@@ -1,8 +1,6 @@
 .PHONY: name build test release install readme doc clean
 .DEFAULT_GOAL := build
 
-binname := $(shell cat Cargo.toml | awk '/name =/ {gsub("\"", "", $$3); print $$3}')
-
 name:
 	echo $(binname)
 
@@ -22,8 +20,10 @@ doc:
 	cargo doc
 
 install: release
-	sudo cp target/release/$(binname) \
-		/usr/local/bin/$(binname)
+	for f in src/bin/*.rs; do \
+		sudo cp target/release/$$(basename $${f%.*}) \
+			/usr/local/bin/; \
+	done
 
 clean:
 	rm -rf \
