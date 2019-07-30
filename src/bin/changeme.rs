@@ -1,5 +1,5 @@
 use log::debug;
-use std::{fmt};
+use std::fmt;
 use structopt::StructOpt;
 
 #[derive(Debug)]
@@ -46,6 +46,11 @@ fn main() {
     });
 }
 
-fn run(args: Cli) -> Result<(), Error> {
+fn run(_args: Cli) -> Result<(), Error> {
+    let demo = changeme::Demo {
+        foo: String::from("bar"),
+    };
+
+    println!("{}", &demo.foo);
     Ok(())
 }
