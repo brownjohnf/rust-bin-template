@@ -1,16 +1,13 @@
-.PHONY: name build test release install readme doc clean
+.PHONY: build test release install readme doc clean version
 .DEFAULT_GOAL := build
-
-name:
-	echo $(binname)
 
 build:
 	cargo build
 
-test: build
+test:
 	cargo test --nocapture
 
-release: test
+release:
 	cargo build --release
 
 readme:
@@ -29,3 +26,6 @@ clean:
 	rm -rf \
 		target \
 		dist
+
+version: readme
+	verto
