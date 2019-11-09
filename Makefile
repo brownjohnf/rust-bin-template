@@ -8,7 +8,7 @@ build:
 	cargo build
 
 test: build
-	cargo test
+	cargo test --nocapture
 
 release: test
 	cargo build --release
